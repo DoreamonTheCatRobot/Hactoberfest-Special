@@ -3,5 +3,10 @@ def half(n):
 		for j in range(0, i+1): 
 			print("* ",end="") 
 		print("\r") 
-n = 5
-half(n) 
+while True:
+	try:
+		n = int(input("Enter the number of rows in pyramid you want:"))
+		half(n) 
+		break
+	except ValueError:
+		print("Enter a Integer only.")
