@@ -1,10 +1,6 @@
-def Fibonacci(n): 
-	if n<0: 
-		print("Incorrect input") 
-	elif n==0: 
-		return 0
-	elif n==1: 
-		return 1
-	else: 
-		return Fibonacci(n-1)+Fibonacci(n-2) 
-print(Fibonacci(9))
+def fibonacci_good(n, computed={0:0, 1:1}): 
+    if n not in computed:
+        computed[n] = fibonacci_good(n-1, computed) + fibonacci_good(n-2, computed)
+    return computed[n]
+
+print(fibonacci_good(9))
