@@ -1,6 +1,4 @@
-# This is an app that will select a random wiki article and provide the summary for you. Then, it will use nlp to select 3 questions about the text that you should answer. 
-
-
+# This is an app that will privide random wiki articles and let you select what you want to read about
 import wikipedia as wk
 import nltk
 from nltk import sent_tokenize
@@ -45,32 +43,17 @@ def collectData(randPgs):
     text = wk.summary(randPgs[selection-1])
     print("Ok! Here is your text. Read it carefully, and when you are ready for your quiz questions, type Go!")
     print("\n\n"+text)
+    print("\n\nDo you want to read about something else?")
+    contin = input("Yes or No?").lower()
+    ## Enhancement: More error handling
+    if contin == "yes":
+      getRandomPgs()
+    else:
+      exit()
 
-    processText(text)
 
 
-
-def processText(text):
-  tagged_words = []
-  summTokenSenten = sent_tokenize(text)
-  for sentence in summTokenSenten:
-    summTokenWord = word_tokenize(text)
-    for word in summTokenWord:
-      tagged_words = nltk.pos_tag(summTokenWord)
-    NER = nltk.ne_chunk(tagged_words, binary= True)
-    #print(NER)
-    #print(tagged_words)
-  for w in tagged_words:
-    if w[1] == "NNP" or w[1] == "CD":
-      print(w)
-
-  qq=1
-  randQQ = []
-  while qq <4:
-    randQQ.append(random.choice(tagged_words))
-    qq=qq+1
-  print("randQQ: ",randQQ)
-
+   
 
 
 if __name__ == '__main__':
